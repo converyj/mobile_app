@@ -1,0 +1,21 @@
+﻿{"frames": [
+
+{
+	"filename": "dogrunning.gif",
+	"frame": {"x":0,"y":0,"w":751,"h":327},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":751,"h":327},
+	"sourceSize": {"w":751,"h":327}
+}],
+"meta": {
+	"app": "Adobe Animate",
+	"version": "18.0.2.126",
+	"Target": "Edge Animate",
+	"Target Version": "4.0",
+	"image": "dogrunningv2.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "1"
+}
+}
