@@ -18,21 +18,20 @@ var app = function(app) {  // module pattern
         hs.show();
 
 
-	   v.page1.start.centerReg(v.page1.content).sca(.7)
-	   	.animate({
-		   props: {y: stage.height-10},
-		   from: true,
-		   ease: "linear",
-		   time: 200
-	   })
+	   // v.page1.start.centerReg(v.page1.content).sca(.7)
+	   // 	.animate({
+		//    props: {y: stage.height-10},
+		//    from: true,
+		//    ease: "linear",
+		//    time: 200
+	   // })
 	   v.page1.logo.animate({
 		props: {scale:2, x:20, y:20},
 		time: 3000,
 		ease: "elasticOut",
 		call: function() {
-			v.page1.start.removeFrom();
 			// from - reverse of this
-			v.page1.dog.centerReg(v.page1.content).loc(-220).run({label: "walk", loop: true, time:1000}).sca(2)
+			v.page1.dog.centerReg(v.page1.content).loc(-220, 350).run({label: "walk", loop: true, time:1000}).sca(2)
 			.animate({
 				props: {x:stage.width+220},
 				time: 3000,
@@ -55,12 +54,12 @@ var app = function(app) {  // module pattern
 			 v.page1.butterfly = new Sprite({
 	    		   image: frame.asset("butterfly.png"),
 	    		   cols: 4,
-	    		   rows: 1
+	    		   rows: 3
 	    	   })
-				 .sca(.1)
+				 .sca(.3)
 				 .centerReg(v.page1.content)
 				 .loc(v.page1.path.pointCircles[0])
-				.run({time:200}).outline()
+				.run({time:200, loop: true}).outline()
 				.animate({
 					props: {path:v.page1.path},
 					// loop: true,
@@ -79,6 +78,23 @@ var app = function(app) {  // module pattern
 	 console.log("Page 2");
 	 v.page2.acc.pause(false);
 
+	 var jump = stage.on("mousedown", () => {
+ 		console.log("mousedown stage")
+ 		v.page2.dog.run({label: "jump", time: 1000})
+ 		v.page2.dog.animate({
+ 			// props: [
+ 				props: {x:160},
+ 				// from: true,
+ 			// ],
+ 			time: 1000,
+ 			ease:"bounce",
+ 			call: function() {
+ 				v.page2.dog.run({label: "walk", loop: true, time: 1000})
+ 			}
+ 		})
+ 		stage.update();
+ 	})
+
 	 ticker();
 	})
 	// ticker();
@@ -87,45 +103,31 @@ var app = function(app) {  // module pattern
 			if (v.page2.log.backing1.hitTestReg(v.page2.dog)) {
 				zog("hitting log1");
 
-				button = playAgain(v);
+				button = playAgain(v, stage);
 				stage.update();
 			}
 			if (v.page2.log.backing2.hitTestReg(v.page2.dog)) {
 				zog("hitting log2");
-				button = playAgain(v);
+				button = playAgain(v, stage);
 
 				stage.update();
 			}
 			if (v.page2.stick.backing1.hitTestReg(v.page2.dog)) {
 				zog("hitting stick1");
-				button = playAgain(v);
+				button = playAgain(v, stage);
 
 				stage.update();
 			}
 			if (v.page2.stick.backing2.hitTestReg(v.page2.dog)) {
 				zog("hitting stick2");
-				button = playAgain(v);
+				button = playAgain(v, stage);
 
 				stage.update();
 			}
 		})
 	}
 
-	var mousedown = stage.on("mousedown", () => {
-		console.log("mousedown stage")
-		v.page2.dog.run({label: "jump", time: 2000})
-		v.page2.dog.animate({
-			props: [
-				{props: {y:5}, time: 700},
-				{props: {x:160, y:440}}
-			],
-			time: 1000,
-			ease:"linear",
-			call: function() {
-				v.page2.dog.run({label: "walk", loop: true})
-			}
-		})
-	})
+
 	// .centerReg().pos(100, 150, null, true, v.page2.content).run({time: 1000}).sca(5);
 
 
@@ -183,11 +185,12 @@ var app = function(app) {  // module pattern
 
 
 
-    function playAgain(v) {
+    function playAgain(v, stage) {
 	    zog("play Again");
 	    // mousedown.disable()
 	    v.page2.dog.run({label: "fall"});
-	    v.page2.butterfly.pauseRun();
+	    // v.page2.butterfly.pauseRun();
+	    // stage.off("mousedown", jump);
 	    v.page2.acc.pause(true, 2000);
 	    // v.page2.bg.pause();
 	    // v.page2.stick.pause();

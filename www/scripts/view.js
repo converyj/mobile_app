@@ -32,11 +32,6 @@ var app = function(app) {  // module pattern
 
         STYLE = {
             type:{
-                Tabs:{
-                    width:160,
-                    spacing:20,
-                    currentSelected:false
-                },
                 Button:{
                     width:70,
                     height:70,
@@ -46,19 +41,19 @@ var app = function(app) {  // module pattern
                     label:"",
                     shadowBlur:-1
 			},
-		},
-        }
-
-
-
+        	}
+	}
 
         const manager = v.manager = new Manager();
 
         const page1 = v.page1 = new Container(stageW, stageH);
+	   let content = v.page1.content = new Container(stage.width, stage.height).addTo(page1);
+
+	   let background = frame.asset("backgroundv3.png").center(content);
+
         let header = new Container().center(page1).outline();
         v.page1.logo = new Label(m.title).center(header).sca(0).outline();
-	   v.page1.start = frame.asset("dog.png").sca(10);
-        let content = v.page1.content = new Container(stage.width, stage.height).addTo(page1);
+
         v.page1.dog = new Sprite({
 		  image: frame.asset("dogsprite-cropped2.png"),
 		  cols: 9,
@@ -75,8 +70,7 @@ var app = function(app) {  // module pattern
    	  })
         // v.dial.currentValue = m.data[0];
 
-        let footer = v.page1.play =
-                new Button(100, 70, "PLAY")
+        let footer = v.page1.play = new Button(100, 70, "PLAY")
 			 // .addTo(page1);
         // footer.buttons[0].setIcon("icon", pizzazz.makeIcon("settings", "white"))
 
@@ -112,9 +106,7 @@ var app = function(app) {  // module pattern
 	   log.backing1.sca(.2).centerReg().pos(300, 50, null, true, content);
 	   log.backing2.sca(.2).centerReg().pos(400, 50, null, true, content);
 
-	   v.page2.acc = new Accelerator([bg, stick, log]);
 
-	   v.page2.acc.pause();
 	   // v.page2.log.backing1.paused = true;
 	   // v.page2.log.backing2.paused = true;
 
@@ -139,20 +131,20 @@ var app = function(app) {  // module pattern
 
 	  v.page2.dog
 	  	.reg(v.page2.dog.width-10, v.page2.dog.height/2+10)
-		  .pos(60, 50, null, true, content)
+		  .pos(200, 50, null, true, content)
 		  .run({label: "walk", time:1000, loop: true})
 		  .sca(5).outline()
 
 		  v.page2.button = new Button(200, 70, "Play Again");
-		 v.page2.butterfly = new Sprite({
+		 const butterfly = v.page2.butterfly = new Sprite({
     		   image: frame.asset("butterfly.png"),
     		   cols: 4,
-    		   rows: 1
+    		   rows: 3
     	   })
-			 .sca(.1)
+			 .sca(.3)
 			 .centerReg(v.page2.content)
 			 .loc(path2.pointCircles[0])
-			.run({time:2000, loop: true}).outline()
+			.run({time:200, loop: true}).outline()
 			.animate({
 				props: {path:path2},
 				loop: true,
@@ -161,7 +153,9 @@ var app = function(app) {  // module pattern
 			})
 	    //v.page2.rect = new Rectangle().centerReg(content);
 
+	    v.page2.acc = new Accelerator([bg, stick, log]);
 
+	    v.page2.acc.pause();
 
         // footer = v.page2.tabs = v.page1.tabs.clone().addTo(page2);
         manager.add(new Layout(page2, [
