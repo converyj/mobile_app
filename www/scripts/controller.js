@@ -31,7 +31,7 @@ var app = function(app) {  // module pattern
 		ease: "elasticOut",
 		call: function() {
 			// from - reverse of this
-			v.page1.dog.centerReg(v.page1.content).loc(-220, 350).run({label: "walk", loop: true, time:1000}).sca(2)
+			v.page1.dog.centerReg(v.page1.content).loc(-220, 350).run({label: "walk", loop: true, time:1000}).sca(4)
 			.animate({
 				props: {x:stage.width+220},
 				time: 3000,
