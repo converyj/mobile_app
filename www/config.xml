@@ -140,7 +140,7 @@
 	<!-- see configComplete.xml for all splash pages -->
 	<!-- https://github.com/phonegap/phonegap/wiki/App-Splash-Screen-Sizes -->
 
-	<splash src="splash1.png" width="480" height="320" />
+	<splash src="splash.png" width="480" height="320" />
 
 	<platform name="ios">
 		<splash src="splash/landscape/ios/Default-Landscape.png" width="768" height="1024" />
