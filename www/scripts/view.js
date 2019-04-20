@@ -5,12 +5,9 @@ var app = function(app) {  // module pattern
         const v = {};
 	   // sqiggle for second page
 	   var data = [
-		   [-11,-65.8,0,0,-69.2,-7.3,69.2,7.3],
-		   [80.5,17.7,0,0,-38.7,-20.7,38.7,20.7],
-		   [220.4,-19.5,0,0,-53.3,100.8,53.3,-100.8],
-		   [529.5,-33.3,0,0,-34.3,83.1,34.3,-83.1],
-		   [808,14.2,0,0,-151.8,125.4,151.8,-125.4],
-		   [1130.2,2.7,0,0,-94.8,0,94.8,0]
+		   [258.7,-27.3,1.3,0,358.6,-221.3,-356,221.3],
+		   [143.2,39.6,0,0,169.4,-41.4,-169.4,41.4],
+		   [300,42,0,0,-100,200,100,-200]
 	   ];
 	   // squiggle for front page
 	   var data1 = [
@@ -19,7 +16,7 @@ var app = function(app) {  // module pattern
 		   [220.4,-19.5,0,0,-53.3,100.8,53.3,-100.8],
 		   [529.5,-33.3,0,0,-34.3,83.1,34.3,-83.1],
 		   [808,14.2,0,0,-151.8,125.4,151.8,-125.4],
-		   [1130.2,2.7,0,0,-94.8,0,94.8,0]
+		   [1295,23.6,0,0,-94.8,0,94.8,0]
 	   ];
 
 	  //  const dog = new Sprite({
@@ -33,16 +30,24 @@ var app = function(app) {  // module pattern
         STYLE = {
             type:{
                 Button:{
+				font: "Franklin Gothic",
                     width:70,
                     height:70,
                     corner:35,
-                    // backgroundColor:purple,
-                    // rollBackgroundColor:pink,
                     label:"",
                     shadowBlur:-1
 			},
-        	}
-	}
+			Squiggle: {
+				visible: false,
+				interactive: false,
+				allowToggle: false,
+				showControls: false
+			},
+			Label: {
+				font: "Franklin Gothic"
+			}
+		}
+        }
 
         const manager = v.manager = new Manager();
 
@@ -64,15 +69,34 @@ var app = function(app) {  // module pattern
 
 		 var path = v.page1.path = new Squiggle({
    		  points: data1
-   		  //  allowToggle: false,
-   		  //  showControls: false,
-   		  // interactive: false
    	  })
-        // v.dial.currentValue = m.data[0];
 
-        let footer = v.page1.play = new Button(100, 70, "PLAY")
-			 // .addTo(page1);
-        // footer.buttons[0].setIcon("icon", pizzazz.makeIcon("settings", "white"))
+	   v.page1.path.addTo(v.page1.content).loc(-168, 168).outline();
+
+	   	   v.page1.butterfly = new Sprite({
+	   	     image: frame.asset("butterfly.png"),
+	   	     cols: 4,
+	   	     rows: 3
+	   	  })
+	   	  	 .sca(.3)
+	   	  	 .centerReg(v.page1.content)
+	   	  	 .loc(v.page1.path.pointCircles[0])
+	   	  	.run({time:200, loop: true}).outline()
+	   	  	.animate({
+	   	  		props: {path:v.page1.path},
+	   	  		ease: "linear",
+	   	  		time: 4000,
+	   			wait: 400,
+	   	  		call: () => {
+	   	  			v.page1.butterfly.removeFrom();
+	   	  		}
+	   	  	});
+
+        v.page1.play = new Button(100, 70, "PLAY").center(content);
+
+	   const footer = v.page1.instructions = new Button({
+		   icon:pizzazz.makeIcon("info", "white").sca(.7)
+	   }).pos(null, null, true, true, page1).outline();
 
         manager.add(new Layout(page1, [
             {object:header, maxWidth:90, marginTop:5},
@@ -81,45 +105,33 @@ var app = function(app) {  // module pattern
 	  ], 2, null, true, null, stage));
 
         const page2 = v.page2 = new Container(stageW, stageH);
-        // header = new Container().addTo(page2);
-        // v.page2.logo = new Label(m.title).addTo(header);
+	   page2.name = "page2";
         content = v.page2.content =  new Container(1000,600).addTo(page2).outline();
 	   const bg = v.page2.bg = new Scroller(frame.asset("backgroundv2.png").center(content), null, null, null, null, stage, content);
 
-        // v.slider = new Slider().sca(1.5).center(content);
-        // v.slider.currentValue = m.data[1];
-
-	   // v.page2.stick = frame.asset("stick.png").center(page2)
-	   const stick = v.page2.stick = new Scroller(frame.asset("stick.png").center(content), null, null, null, null, stage, content);
-
-	   stick.backing1.sca(.1).centerReg().pos(100, 50, null, true, content);
-	   stick.backing2.sca(.1).centerReg().pos(200, 50, null, true, content);
-
-	   // v.page2.stick.backing1.paused = true;
-	   // v.page2.stick.backing2.paused = true;
 
 
-	   // v.page2.stick.sca(.1);
-	   // .center(content).loc(69, 410).ske(20, -20);
+	   // const stick = v.page2.stick = new Scroller(frame.asset("puddle.png").center(content), null, null, null, null, stage, content);
+	   // //
+	   // stick.backing1.sca(.1).centerReg().pos(300, 50, null, true, content).outline();
+	   // stick.backing2.sca(.1).centerReg().pos(500, 50, null, true, content).outline();
+
 	   const log = v.page2.log = new Scroller(frame.asset("log.png").center(content), null, null, null, null, stage, content);
 
-	   log.backing1.sca(.2).centerReg().pos(300, 50, null, true, content);
-	   log.backing2.sca(.2).centerReg().pos(400, 50, null, true, content);
+	   log.backing1.sca(.2).center().pos(950, 50, null, true, content).outline();
+	   log.backing2.sca(.2).centerReg().pos(950, 50, null, true, content).outline();
 
-
-	   // v.page2.log.backing1.paused = true;
-	   // v.page2.log.backing2.paused = true;
-
-	   // .sca(.2).addTo());
 
 	   var path2 = new Squiggle({
 		  points: data
-		  //  allowToggle: false,
-		  //  showControls: false,
-		  // interactive: false
-	  }).addTo(v.page2.content).loc(-19, 271).outline();
+	  }).addTo(v.page2.content).loc(951, 188);
 
-	  path2.visible = true;
+	  frame.on("keydown", function(e) {
+		zog(e.keyCode);
+		if (e.keyCode == 82) { // R key
+			path2.recordPoints(true);
+		}
+	});
 
 	   // run(time, "label")
 	   v.page2.dog = new Sprite({
@@ -130,12 +142,14 @@ var app = function(app) {  // module pattern
 	  });
 
 	  v.page2.dog
-	  	.reg(v.page2.dog.width-10, v.page2.dog.height/2+10)
+	  .centerReg()
+	  	// .reg(v.page2.dog.width, v.page2.height)
 		  .pos(200, 50, null, true, content)
 		  .run({label: "walk", time:1000, loop: true})
 		  .sca(5).outline()
 
 		  v.page2.button = new Button(200, 70, "Play Again");
+
 		 const butterfly = v.page2.butterfly = new Sprite({
     		   image: frame.asset("butterfly.png"),
     		   cols: 4,
@@ -144,31 +158,62 @@ var app = function(app) {  // module pattern
 			 .sca(.3)
 			 .centerReg(v.page2.content)
 			 .loc(path2.pointCircles[0])
-			.run({time:200, loop: true}).outline()
+			.run({time:1000, loop: true})
 			.animate({
 				props: {path:path2},
 				loop: true,
 				ease: "linear",
 				time: 4000
 			})
-	    //v.page2.rect = new Rectangle().centerReg(content);
 
-	    v.page2.acc = new Accelerator([bg, stick, log]);
+	    v.page2.acc = new Accelerator([bg, log]);
 
 	    v.page2.acc.pause();
 
-        // footer = v.page2.tabs = v.page1.tabs.clone().addTo(page2);
         manager.add(new Layout(page2, [
             {object:content, maxHeight: stage.height, maxHeight: stage.width}
 	  ], 2, null, true, new Shape(), stage));
 
+	  const page3 = v.page3 = new Container(stageW, stageH);
+	  content = v.page3.content =  new Container(1000,600).addTo(page3).outline();
+	  const inst = v.page3.bg = frame.asset("backgroundv4.png").center(content);
+
+	  var instructions = new Label({
+		 text:m.instructions,
+		 color:"white",
+		 align:"center",
+		 backgroundColor:"#42919a",
+		 backgroundBorderColor:"#1c1c1c",
+		 corner:10,
+		 padding:25,
+		 labelWidth:500,
+		 lineHeight:40
+
+	 }).centerReg(page3).loc(475, 200);
+
+	  var startGame = v.page3.start = new Label({
+		 text: m.start,
+		 color:"white",
+		 rollColor:"#1c1c1c",
+		 align:"center",
+		 backgroundColor:"#42919a",
+		 backgroundBorderColor:"#1c1c1c",
+		 corner:10,
+		 padding:25
+
+	 }).centerReg(page3).loc(474, 350);
+
+	  manager.add(new Layout(page3, [
+		 {object:content, maxHeight: stage.height, maxHeight: stage.width}
+	 ], 2, null, true, new Shape(), stage));
+
         manager.add(v.pages = new Pages([
-            {page:page1, swipe:[null, null, null, null]},
-            {page:page2, swipe:[null, null, null, null]}
+            {page:page1, swipe:[page2, page2, null, null]},
+            {page:page2, swipe:[null, null, null]},
+		  {page:page3, swipe:[null, null, null, null]}
         ], "slide", 500).addTo());
 
         return v;
-
     }
     return app; // module pattern
 }(app||{}); // module pattern

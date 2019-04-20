@@ -31,7 +31,7 @@
 var scaling = "full"; // this will resize to fit inside the screen dimensions
 var color = light; // ZIM colors like green, blue, pink, faint, clear, etc.
 var outerColor = dark; // any HTML colors like "violet", "#333", etc. are fine to use
-var assets = ["backgroundv2.png", "backgroundv3.png", "dogsprite-cropped2.png", "butterfly.png", "log.png", "stick.png", "dog.png"];
+var assets = ["backgroundv2.png", "backgroundv3.png", "backgroundv4.png", "dogsprite-cropped2.png", "butterfly.png", "log.png", "birds.mp3", "jump.mp3", "lose.mp3"];
 var path = "assets/"
 
 var frame = new Frame(scaling, null, null, color, outerColor, assets, path, new Waiter());
@@ -41,6 +41,7 @@ frame.on("ready", function() {
     var stage = frame.stage;
     var stageW = frame.width;
     var stageH = frame.height;
+
 
     const m = app.makeModel();
     const v = app.makeView(m, stage);
