@@ -175,7 +175,7 @@ var app = function(app) {  // module pattern
 	  ], 2, null, true, new Shape(), stage));
 
 	  const page3 = v.page3 = new Container(stageW, stageH);
-	  content = v.page3.content =  new Container(1000,600).addTo(page3).outline();
+	  content = v.page3.content =  new Container(stage.width, stage.height).addTo(page3).outline();
 	  const inst = v.page3.bg = frame.asset("backgroundv4.png").center(content);
 
 	  var instructions = new Label({
