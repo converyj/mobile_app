@@ -23,7 +23,7 @@ var app = function(app) {  // module pattern
 		call: function() {
 			v.page1.play.addTo(v.page1);
 			// from - reverse of this
-			v.page1.dog.centerReg(v.page1.content).loc(-250, 350).run({label: "walk", loop: true, time:1000}).sca(4)
+			v.page1.dog.centerReg(v.page1.content).loc(-250, 340).run({label: "walk", loop: true, time:1000}).sca(4)
 			.animate({
 				props: {x:stage.width+250},
 				time: 3000,
