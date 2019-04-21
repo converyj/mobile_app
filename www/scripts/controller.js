@@ -8,11 +8,9 @@ var app = function(app) {  // module pattern
         // can simplify with a loop - see MVC example https://zimjs.com/mvc
         const hs = new HotSpots([
             {page:v.page1, rect:v.page1.logo, call:()=>{zog("clicking on hotspot")}},
-            // {page:v.page2, rect:v.page2.logo, call:()=>{v.pages.go(v.page1, "left");}},
+            {page:v.page2, rect:v.page2.logo, call:()=>{v.pages.go(v.page1, "left");}},
             {page:v.page1, rect:v.page1.play, call:()=>{v.pages.go(v.page2, "right")}},
             {page:v.page2, rect:v.page2.button, call:()=>{v.pages.go(v.page1, "left");}},
-		  // {page:v.page1, rect:v.page1.instructions, call:()=>{v.pages.go(v.page3, "left");}},
-		  // {page:v.page3, rect:v.page3.start, call:()=>{v.pages.go(v.page1, "right");}},
         ]);
         hs.show();
 
@@ -25,7 +23,7 @@ var app = function(app) {  // module pattern
 		time: 2000,
 		ease: "elasticOut",
 		call: function() {
-			v.page1.play.center(v.page1);
+			v.page1.play.pos(null, null, null, true, v.page1.content).loc(403, 216);
 			// from - reverse of this
 			v.page1.dog.centerReg(v.page1.content).loc(-250, 370).run({label: "walk", loop: true, time:1000}).sca(4)
 			.animate({
@@ -142,7 +140,7 @@ var app = function(app) {  // module pattern
 	    fall = true;
 	    v.page2.dog.run({label: "fall"});
 	    v.page2.acc.pause(true, 2000);
-	    v.page2.button.center();
+	    v.page2.button.pos(null, null, null, true, v.page2.content).loc(403, 216);
 	    v.page2.button.on("click", function () {
 		    location.reload();
 	    });

@@ -64,7 +64,7 @@ var app = function(app) {  // module pattern
         v.page1.logo = new Label({
 		   text: m.title,
 	   	color: "green"
-	}).center(page1);
+	}).pos(null, null, true, null, v.page1.content);
 
         v.page1.dog = new Sprite({
 		  image: frame.asset("dogsprite-cropped2.png"),
@@ -105,7 +105,7 @@ var app = function(app) {  // module pattern
 		   width: 500,
 		   height: 200,
 		   backgroundColor:orange
-   }).center(content).show();
+   }).pos(null, null, null, true, v.page1.content).loc(403, 216).show().outline();
 
    var label = new Label({
 	  text: m.instructions,
