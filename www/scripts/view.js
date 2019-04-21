@@ -4,7 +4,7 @@ var app = function(app) {  // module pattern
         var stageH = stage.height;
         const v = {};
 
-	   // sqiggle for second page
+	   // squiggle for second page
 	   var data = [
 		   [-78.4,-93.7,0,0,-42.8,17.4,42.8,-17.4],
 		   [83.1,-64.4,0,0,0,-50,0,50],
