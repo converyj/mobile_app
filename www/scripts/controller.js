@@ -23,9 +23,9 @@ var app = function(app) {  // module pattern
 		call: function() {
 			v.page1.play.pos(null, null, null, true, v.page1.content).loc(403, 216);
 			// from - reverse of this
-			v.page1.dog.centerReg(v.page1.content).loc(-400, 400).run({label: "walk", loop: true, time:1000}).sca(4)
+			v.page1.dog.centerReg(v.page1.content).loc(-600, 400).run({label: "walk", loop: true, time:1000}).sca(4)
 			.animate({
-				props: {x:stage.width+400},
+				props: {x:stage.width+600},
 				time: 3500,
 				// wait: 200,
 				// from: true,

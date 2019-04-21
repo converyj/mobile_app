@@ -63,7 +63,7 @@ var app = function(app) {  // module pattern
         v.page1.logo = new Label({
 		   text: m.title,
 	   	color: "green"
-	}).pos(500, null, null, null, content).outline();
+	}).center(page1);
 
         v.page1.dog = new Sprite({
 		  image: frame.asset("dogsprite-cropped2.png"),
@@ -127,7 +127,7 @@ var app = function(app) {  // module pattern
 	   }).pos(null, null, null, true, content).loc(469, 545);
 
         manager.add(new Layout(page1, [
-            // {object:header, maxWidth:stage.width, marginTop:5},
+            // {object:header, maxWidth:90, marginTop:5},
             {object:content,  maxHeight: stage.height, maxWidth: stage.width}
             // {object:footer, maxWidth:stage.width}
 	  ], 2, null, true, null, stage));
