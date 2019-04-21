@@ -4,11 +4,10 @@ var app = function(app) {  // module pattern
         var stageH = stage.height;
         const v = {};
 	   // sqiggle for second page
-	   var data = [
-		   [340.6,-71.1,0,0,308.2,51.2,-308.2,-51.2],
-		   [143.2,39.6,0,0,-97.4,167.6,97.4,-167.6],
-		   [300,42,0,0,-100,200,100,-200]
-	   ];
+	   var data =
+
+[[21.9,-14.7,0,0,-59.8,63.4,59.8,-63.4,"mirror"],[140.2,-2.4,0,0,0,-50,0,50,"mirror"],[0,100,0,0,50,0,-50,0,"mirror"],[-98.8,6.1,0,0,-18.3,39,18.3,-39,"mirror"]]
+	  
 	   // squiggle for front page
 	   var data1 = [
 		   [-11,-65.8,0,0,-69.2,-7.3,69.2,7.3],
@@ -39,9 +38,9 @@ var app = function(app) {  // module pattern
 			},
 			Squiggle: {
 				visible: true,
-				interactive: false,
-				allowToggle: false,
-				showControls: false
+				interactive: true,
+				allowToggle: true,
+				showControls: true
 			},
 			Label: {
 				font: "Franklin Gothic"
@@ -56,8 +55,8 @@ var app = function(app) {  // module pattern
 
 	   let background = frame.asset("backgroundv3.png").center(content);
 
-        let header = new Container().center(page1).outline();
-        v.page1.logo = new Label(m.title).center(header).sca(0).outline();
+        // let header = new Container().center(page1).outline();
+        v.page1.logo = new Label(m.title).center(page1).sca(0).outline();
 
         v.page1.dog = new Sprite({
 		  image: frame.asset("dogsprite-cropped2.png"),
@@ -94,28 +93,33 @@ var app = function(app) {  // module pattern
 
         v.page1.play = new Button(100, 70, "PLAY").center(content);
 
-	   var pane = new Pane({
-		   width: 700,
+	   var pane = v.page1.pane = new Pane({
+		   width: 500,
 		   height: 200,
-		   label: m.instructions,
 		   backgroundColor:"#42919a"
-   })
-	   .show();
+   }).center(page1).show();
+
+   var label = new Label({
+	  text: m.instructions,
+	  align:"center",
+	  backgroundBorderColor:"#1c1c1c",
+	  corner:10,
+	  padding:25,
+	  labelWidth:500,
+	  lineHeight:40
+  }).center(pane)
+
 
 
 	   const footer = v.page1.instructions = new Button({
 		   icon:pizzazz.makeIcon("info", "white").sca(.7)
 	   }).pos(null, null, true, true, page1).outline();
 
-	   v.page1.instructions.on("click", () => {
-	   	pane.show();
-
-	   })
         manager.add(new Layout(page1, [
-            {object:header, maxWidth:90, marginTop:5},
+            // {object:header, maxWidth:90, marginTop:5},
             {object:content, marginTop:2},
             {object:footer, maxWidth:90, marginTop:2}
-	  ], 2, null, true, null, stage));
+	  ], 2, null, true, new Shape(), stage));
 
         const page2 = v.page2 = new Container(stageW, stageH);
 	   // page2.name = "page2";
@@ -135,7 +139,7 @@ var app = function(app) {  // module pattern
 
 	   var path2 = new Squiggle({
 		  points: data
-	  }).addTo(v.page2.content).loc(900, 188);
+	  }).addTo(v.page2.content).loc(-50, 268);
 
 	  frame.on("keydown", function(e) {
 		zog(e.keyCode);
@@ -169,7 +173,7 @@ var app = function(app) {  // module pattern
 			 .sca(.3)
 			 .centerReg(v.page2.content)
 			 .loc(path2.pointCircles[0])
-			.run({time:1000, loop: true})
+			.run({time:4000, loop: true})
 			.animate({
 				props: {path:path2},
 				loop: true,

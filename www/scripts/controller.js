@@ -16,6 +16,10 @@ var app = function(app) {  // module pattern
         ]);
         hs.show();
 
+	   v.page1.instructions.on("click", () => {
+	   	v.page1.pane.show();
+	});
+
 	   v.page1.logo.animate({
 		props: {scale:2, x:20, y:20},
 		time: 2000,
@@ -97,7 +101,7 @@ var app = function(app) {  // module pattern
  		v.page2.dog.run({label: "jump", time: 1000})
  		v.page2.dog.animate({
  			props: [
-				{props: {y:200, x: v.page2.dog.x+100}, time: 700},
+				{props: {y:200, x: 200}, time: 700},
  				{props: {y:500}, time: 700}
  			],
  			time: 1000,
