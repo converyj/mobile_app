@@ -63,7 +63,7 @@ var app = function(app) {  // module pattern
         v.page1.logo = new Label({
 		   text: m.title,
 	   	color: "green"
-	}).center(page1);
+	}).pos(500, 500, null, null, content);
 
         v.page1.dog = new Sprite({
 		  image: frame.asset("dogsprite-cropped2.png"),
@@ -150,7 +150,7 @@ var app = function(app) {  // module pattern
 
 	   var path2 = new Squiggle({
 		  points: data
-	  }).addTo(v.page2.content).loc(747, 306);
+	  }).addTo(v.page2.content).loc(847, 306);
 
 	  frame.on("keydown", function(e) {
 		zog(e.keyCode);
