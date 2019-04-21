@@ -35,8 +35,8 @@ var app = function(app) {  // module pattern
             type:{
                 Button:{
 				font: "Franklin Gothic",
-                    // width:70,
-                    // height:70,
+                    width:200,
+                    height:70,
                     // corner:35,
                     label:"",
                     shadowBlur:-1
@@ -64,7 +64,7 @@ var app = function(app) {  // module pattern
         v.page1.logo = new Label({
 		   text: m.title,
 	   	color: "green"
-	}).pos(null, null, true, null, v.page1.content);
+	}).pos(100, null, null, null, v.page1.content);
 
         v.page1.dog = new Sprite({
 		  image: frame.asset("dogsprite-cropped2.png"),
@@ -122,9 +122,9 @@ var app = function(app) {  // module pattern
 		// const footer = new Container().center(page1);
 	  v.page1.instructions = new Button({
 		   icon:pizzazz.makeIcon("info", "white"),
-		   corner: 25,
-		   width: 50,
-		   height: 50
+		   corner: 35,
+		   width: 70,
+		   height: 70
 	   }).pos(null, null, null, true, content).loc(469, 545);
 
         manager.add(new Layout(page1, [

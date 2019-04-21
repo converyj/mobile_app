@@ -7,7 +7,6 @@ var app = function(app) {  // module pattern
         // Or use HotSpots for lots of navigation
         // can simplify with a loop - see MVC example https://zimjs.com/mvc
         const hs = new HotSpots([
-            {page:v.page1, rect:v.page1.logo, call:()=>{zog("clicking on hotspot")}},
             {page:v.page2, rect:v.page2.logo, call:()=>{v.pages.go(v.page1, "left");}},
             {page:v.page1, rect:v.page1.play, call:()=>{v.pages.go(v.page2, "right")}},
             {page:v.page2, rect:v.page2.button, call:()=>{v.pages.go(v.page1, "left");}},
@@ -25,9 +24,9 @@ var app = function(app) {  // module pattern
 		call: function() {
 			v.page1.play.pos(null, null, null, true, v.page1.content).loc(403, 216);
 			// from - reverse of this
-			v.page1.dog.centerReg(v.page1.content).loc(-250, 370).run({label: "walk", loop: true, time:1000}).sca(4)
+			v.page1.dog.centerReg(v.page1.content).loc(-300, 400).run({label: "walk", loop: true, time:1000}).sca(4)
 			.animate({
-				props: {x:stage.width+250},
+				props: {x:stage.width+300},
 				time: 3000,
 				// wait: 200,
 				// from: true,
