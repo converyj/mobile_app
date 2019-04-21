@@ -25,6 +25,7 @@ var app = function(app) {  // module pattern
 				.animate({
 					props: {x:stage.width+600},
 					time: 5000,
+					waits: 3000,
 					ease: "linear"
 				});
 			}
@@ -65,7 +66,7 @@ var app = function(app) {  // module pattern
 			v.page2.dog.run({label: "jump", time: 1000})
 			v.page2.dog.animate({
 				props: [
-					{props: {y:200, x: 400}, time: 700},
+					{props: {y:200, x: 400+10}, time: 700},
 					{props: {y:500}, time: 700}
 				],
 				time: 1000,
