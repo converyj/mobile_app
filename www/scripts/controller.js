@@ -25,7 +25,7 @@ var app = function(app) {  // module pattern
 		time: 2000,
 		ease: "elasticOut",
 		call: function() {
-			v.page1.play.addTo(v.page1);
+			v.page1.play.center(v.page1);
 			// from - reverse of this
 			v.page1.dog.centerReg(v.page1.content).loc(-250, 370).run({label: "walk", loop: true, time:1000}).sca(4)
 			.animate({
@@ -101,7 +101,7 @@ var app = function(app) {  // module pattern
  		v.page2.dog.run({label: "jump", time: 1000})
  		v.page2.dog.animate({
  			props: [
-				{props: {y:200, x: 200}, time: 700},
+				{props: {y:200, x: 300}, time: 700},
  				{props: {y:500}, time: 700}
  			],
  			time: 1000,
@@ -109,9 +109,9 @@ var app = function(app) {  // module pattern
  			call: function() {
 				if (fall) {
 					zog(fall);
- 					v.page2.dog.run({label: "fall", loop: true, time: 1000}).outline();
+ 					v.page2.dog.run({label: "fall", loop: true, time: 1000});
 				} else {
-					v.page2.dog.run({label: "walk", loop: true, time: 1000}).outline();
+					v.page2.dog.run({label: "walk", loop: true, time: 1000});
 
 				}
  			}
