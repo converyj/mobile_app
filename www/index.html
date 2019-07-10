@@ -1,39 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>jqJigsawPuzzle - Example 5</title>
-            <meta http-equiv="Content-Language" content="en-GB"/>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <meta name="viewport" content="initial-scale=1,width=device-width" />
-            <meta name="keywords" content=""/>
-            <meta name="description" content=""/>
-    
-            <link rel="stylesheet" href="css/jqJigsawPuzzle.min.css" type="text/css"/>
-            <link rel="stylesheet" href="css/jquery-ui-1.8.22.custom.css" type="text/css"/>
-    
-            <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-            <script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
-            <script type="text/javascript" src="../source/jqJigsawPuzzle_modified.js"></script>
-            <div>
-                <img id="my_frame" src="img/brave.jpg" alt="" width='320' height='240'/>
-            </div>
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    jqJigsawPuzzle.createPuzzleFromImage("#my_frame",  {
-                        piecesSize: 'normal',
-                        borderWidth: 10,
-                        shuffle: {
-                            rightLimit: 150,
-                            leftLimit: 150,
-                            topLimit: 100,
-                            bottomLimit: 00
-                        }
-                    });
-                });
-            </script>
-    </head>
-    <body style="min-width: 100%;">
-        <div style="text-align:center; visibility: hidden; max-width: 100%;" id="my_frame">
-        </div>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Jigsaw (v0.2.0)</title>
+		<meta name="viewport" content="initial-scale=1,width=device-width" />
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+	<img src="img/jigsaw.jpg" alt="Jigsaw Image" id="puzzle_map" style="display:none;">
+		<div id="jigsaw_wrap"></div>
+		<div class="tools_bar">
+			<div class="result_box"></div>
+			<button class="btn_cmn" type="button" id="btn_restart">Restart</button>
+		</div>
+		<script src="js/jquery-1.9.0.min.js"></script>
+		<script src="js/hammer.js"></script>
+		<script src="js/split-image.js"></script>
+		<script src="js/jigsaw-puzzle.js"></script>
+		<script>
+			(function(){
+				'use strict';
+				var puzzle = Jigsaw.init({
+					'container': '#jigsaw_wrap',
+					'divisions': 3
+				});
+			})();
+		</script>
+	</body>
 </html>
