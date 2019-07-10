@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Jigsaw (v0.2.0)</title>
+		<meta name="viewport" content="initial-scale=1,width=device-width" />
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+	<img src="img/jigsaw.jpg" alt="Jigsaw Image" id="puzzle_map" style="display:none;">
+		<div id="jigsaw_wrap"></div>
+		<div class="tools_bar">
+			<div class="result_box"></div>
+			<button class="btn_cmn" type="button" id="btn_restart">Restart</button>
+		</div>
+		<script src="js/jquery-1.9.0.min.js"></script>
+		<script src="js/hammer.js"></script>
+		<script src="js/split-image.js"></script>
+		<script src="js/jigsaw-puzzle.js"></script>
+		<script>
+			(function(){
+				'use strict';
+				var puzzle = Jigsaw.init({
+					'container': '#jigsaw_wrap',
+					'divisions': 3
+				});
+			})();
+		</script>
+	</body>
+</html>
