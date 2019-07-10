@@ -12,27 +12,24 @@
     
             <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
             <script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
-            <script type="text/javascript" src="../source/jqJigsawPuzzle_modified.js"></script>
-            <div>
-                <img id="my_frame" src="img/winnie-the-pooh.jpg" alt="" width='320' height='240'/>
-            </div>
+            <script type="text/javascript" src="js/jqJigsawPuzzle.min.js"></script>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
-                    jqJigsawPuzzle.createPuzzleFromImage("#my_frame",  {
+                    jqJigsawPuzzle.createPuzzleFromURL("#my_frame", "img/beach-at-trabane-strand.jpg",  {
                         piecesSize: 'normal',
                         borderWidth: 10,
                         shuffle: {
-                            rightLimit: 150,
-                            leftLimit: 150,
-                            topLimit: 100,
-                            bottomLimit: 00
+                            rightLimit: 250,
+                            leftLimit: 250,
+                            topLimit: 5,
+                            bottomLimit: 5
                         }
                     });
                 });
             </script>
     </head>
-    <body style="min-width: 100%;">
-        <div style="text-align:center; visibility: hidden; max-width: 100%;" id="my_frame">
+    <body>
+        <div style="text-align:center;" id="my_frame">
         </div>
     </body>
 </html>
